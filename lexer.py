@@ -4,7 +4,7 @@
 # keywords = ["function", "integer", "real", "boolean", "if", "else", "endif", 
 #             "while", "return", "scan", "print", "endwhile","true", "false"]
 
-# seperators = ["{", "}", ";", "(", ")", "$$", ",", ":"]
+# separators = ["{", "}", ";", "(", ")", "$$", ",", ":"]
 
 # def fsmId(curr_tok):
 #     """
@@ -88,8 +88,8 @@ def lexer(fp):
 
     is_comment = False
 
-    first_char_seperators = ["{", "}", ";", "(", ")", "$", ",", ":"]
-    seperators = ["{", "}", ";", "(", ")", "$$", ",", ":"]
+    first_char_separators = ["{", "}", ";", "(", ")", "$", ",", ":"]
+    separators = ["{", "}", ";", "(", ")", "$$", ",", ":"]
 
     first_char_operators = ["=", "!", ">", "<", "+", "-", "*", "/"]
     operators = ["==", "=", "!=", ">", "<", "<=", "=>", "+", "-", "*", "/"]
@@ -126,9 +126,9 @@ def lexer(fp):
                 curr_string = "" # flush the current string
                 continue
 
-            ####################### Token is a Seperator #######################
-            if curr_tok in first_char_seperators:
-                curr_tok_type = "Seperator"
+            ####################### Token is a Separator #######################
+            if curr_tok in first_char_separators:
+                curr_tok_type = "Separator"
                 curr_string = "" # flush the current string
                 continue
 
@@ -195,14 +195,14 @@ def lexer(fp):
                         return ("Unknown", buf)
                     return ("Operator", buf)
             
-            ####################### Token is a Seperator #######################
-            if curr_tok_type == "Seperator":
-                # if current seperator is 2 char long then it should be returned
+            ####################### Token is a Separator #######################
+            if curr_tok_type == "Separator":
+                # if current separator is 2 char long then it should be returned
                 buf = curr_tok + curr_string
-                if buf in seperators:
+                if buf in separators:
                     curr_tok = "" # flush the current token
                     curr_string = "" # flush the current string
-                    return ("Seperator", buf)
+                    return ("Separator", buf)
                 # if the current operator is 1 char long return what is in the current token
                 else:
                     buf = curr_tok # return the current token
@@ -214,7 +214,7 @@ def lexer(fp):
                     curr_string = "" # flush the current string
                     if buf == "$":
                         return ("Unknown", buf)
-                    return ("Seperator", buf)
+                    return ("Separator", buf)
             
             ######################## Token is a Keyword ########################
             keywords = ["function", "integer", "real", "boolean", "if", "else", "endif", 
@@ -298,7 +298,7 @@ def lexer(fp):
                         continue
 
                 if (curr_string in first_char_operators or
-                    curr_string in first_char_seperators):
+                    curr_string in first_char_separators):
                     
                     buf = curr_tok # return the current token
                     curr_tok = "" # flush the current token since the current char will be read again
