@@ -531,6 +531,6 @@ def syntax_analyzer(input_filename, output_filename):
         print(f"Error during parsing: {str(e)}")
 
 if __name__ == "__main__":
-    input_file = input("Enter input file name (e.g., test.txt): ")
-    output_file_name = input("Enter output file name (e.g., output.txt): ")
+    input_file = input("Enter input file name: ")
+    output_file_name = input("Enter output file name: ")
     syntax_analyzer(input_file, output_file_name)
