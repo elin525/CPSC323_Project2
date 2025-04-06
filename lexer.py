@@ -1,84 +1,3 @@
-
-# operators = ["==", "=", "!=", ">", "<", "<=", "=>", "+", "-", "*", "/"]
-
-# keywords = ["function", "integer", "real", "boolean", "if", "else", "endif", 
-#             "while", "return", "scan", "print", "endwhile","true", "false"]
-
-# separators = ["{", "}", ";", "(", ")", "$$", ",", ":"]
-
-# def fsmId(curr_tok):
-#     """
-#         Finite State machine that handles Identifiers and keywords.
-#         A token is an identifier if:
-#             - It starts with a letter,
-#             - It contains a "_", letter, or digit
-#         A token is a keyword if it is contained within the keywords data 
-#         structure defined above.
-#     """
-
-#     # Handle Keywords
-#     if curr_tok in keywords:
-#         return ("Keyword", curr_tok)
-    
-#     else:
-#         for char in curr_tok:
-#             if char.isalpha() or char.isdigit() or char == "_":
-#                 continue
-#             # Invalid identifier
-#             else:
-#                 return ("Unknown", curr_tok)
-#         # Identifier
-#         return ("Identifier", curr_tok)
-    
-# def fsmInt(curr_tok):
-#     """
-#         Finite State machine that handles Integers.
-#         This FSM is called for any tokens that start with an integer
-#         and returns "Not_Int" in the case that the the token does not just 
-#         contain integers. If the token is a real it will be initially defined
-#         as "Not_Int" and then will be passed to fsmReal to verify if it is
-#         a Real.
-#     """
-#     for integer in curr_tok:
-#         if integer.isdigit():
-#             continue
-#         else:
-#             return ("Not_Int", curr_tok)
-#     # Integer
-#     return ("Integer", curr_tok)
-
-# def fsmReal(curr_tok):
-#     """
-#         Finite State machine that handles Reals.
-#         A token is defined as a Real if:
-#         - It starts with an integer.
-#         - It contains one decimal.
-#         - It contains at least one integer after the decimal.
-#     """
-#     num_decimals = 0
-#     index_of_last_digit = len(curr_tok) - 1
-#     for index in range(1, len(curr_tok)):
-
-#         if curr_tok[index].isdigit():
-#             continue
-#         elif curr_tok[index] == ".":
-
-#             # If number of decimals exceeds one.
-#             if num_decimals >= 1:
-#                 return ("Unknown", curr_tok)
-            
-#             num_decimals += 1
-#         else:
-#             return ("Unknown", curr_tok)
-    
-#     # Token is a Real.
-#     if curr_tok[index_of_last_digit].isdigit():
-#         return ("Real", curr_tok)
-    
-#     # Cases where an integer does not occur after the decimal.
-#     else:
-#         return ("Unknown", curr_tok)
-    
 def lexer(fp):
 
     # read until whitespace, newline, or tab
@@ -149,12 +68,11 @@ def lexer(fp):
                 curr_tok = ""
                 continue
             
-            # TODO: If current token is unknown, continue to concat to it until 
+            # If current token is unknown, continue to concat to it until 
             # a string is read that is not unknown. Create a seperate if statement
             # in the else (that handles curr_tok != "" ) that will update curr_tok
             # with the known string type and return the Unknown token
             else:
-                # print("BUG: " + curr_tok)
                 curr_tok_type = "Unknown"
                 curr_string = "" # flush the current string
                 continue
