@@ -1,0 +1,9 @@
+$$ 
+function invalidFunction (x real, y integer) real z; integer a; { 
+    return x + y; 
+}
+$$ 
+integer z;
+$$ 
+z = 4;
+$$

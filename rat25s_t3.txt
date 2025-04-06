@@ -1,0 +1,40 @@
+$$
+function findMinValue (val1 integer, val2 integer)
+{
+    if (val1 < val2)
+    {
+        return val1;
+    }
+    else
+    {
+        return val2;
+    }
+    endif
+}
+function calcPower(base real, exponent real) integer iterator; real product;
+{
+    iterator = 1;
+    while (iterator <= exponent)
+    {
+        product = product * base;
+    }
+    endwhile
+    return product;
+}
+
+$$
+integer value1, value2, min;
+real base, exponent, product;
+
+$$
+scan(value1, value2, min);
+scan(base, exponent, product);
+
+min = findMinValue(value1, value2);
+
+print(min);
+
+product = calcPower(base, exponent);
+
+print(product);
+$$
